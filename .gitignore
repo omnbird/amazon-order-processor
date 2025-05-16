@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.log
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# 环境/依赖
+.env
+.venv/
+ama/
+env/
+ENV/
+Pipfile.lock
+poetry.lock
+
+# VSCode/IDE
+.vscode/
+.idea/
+*.swp
+
+# MacOS
+.DS_Store
+
+# Excel/数据文件（如不想上传抓取结果）
+*.xlsx
+*.xls
+*.csv
+
+# 截图、临时文件
+*.png
+*.jpg
+*.jpeg
+*.tmp
+
+# Selenium/浏览器缓存
+/tmp/
+chrome-debug/
+
+# 你可以根据实际情况添加或删除
