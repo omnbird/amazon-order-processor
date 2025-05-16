@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import pandas as pd
 from bs4 import BeautifulSoup
 import os
@@ -334,3 +336,5 @@ def main():
 
 if __name__ == "__main__":
     main() 
+
+#/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222 --user-data-dir="/tmp/chrome-debug"
