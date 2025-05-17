@@ -16,6 +16,7 @@ import re
 import socket
 import signal
 from contextlib import contextmanager
+import logging
 
 @contextmanager
 def timeout(seconds):
@@ -46,7 +47,26 @@ class AmazonOrderScraper:
                 options.add_experimental_option("debuggerAddress", "127.0.0.1:9222")
                 
                 # 使用webdriver_manager自动管理ChromeDriver
-                service = Service(ChromeDriverManager().install())
+                # 设置日志级别为 DEBUG
+                logging.basicConfig(level=logging.INFO)
+                logger = logging.getLogger('webdriver_manager')
+                logger.setLevel(logging.INFO)
+                
+                # 检查缓存
+                cache_path = os.path.expanduser("~/.wdm/drivers.json")
+                if os.path.exists(cache_path):
+                    with open(cache_path, 'r') as f:
+                        cache = json.load(f)
+                        for key, value in cache.items():
+                            if 'chromedriver' in key.lower():
+                                binary_path = value.get('binary_path')
+                                if binary_path and os.path.exists(binary_path):
+                                    print(f"使用缓存的 ChromeDriver: {binary_path}")
+                                    service = Service(executable_path=binary_path)
+                                    break
+                else:
+                    print("未找到缓存，开始下载 ChromeDriver...")
+                    service = Service(ChromeDriverManager().install())
                 
                 # 设置超时
                 with timeout(10):  # 10秒超时
